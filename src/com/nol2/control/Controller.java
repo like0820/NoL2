@@ -47,7 +47,7 @@ public class Controller implements ActionListener {
 		mainview.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				mainview.setVisible(false);
+				System.exit(0);
 			}
 		});
 
@@ -78,7 +78,7 @@ public class Controller implements ActionListener {
 		// Find_PassView
 		findpassview.bt_confirm.addActionListener(this);
 		findpassview.bt_cancel.addActionListener(this);
-		findpassview.addWindowListener(new WindowAdapter() { // form에서 x버튼을 눌렀을 때!
+		findpassview.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				findpassview.setVisible(false);
@@ -89,7 +89,7 @@ public class Controller implements ActionListener {
 		joinview.bt_checkid.addActionListener(this);
 		joinview.bt_submit.addActionListener(this);
 		joinview.bt_reset.addActionListener(this);
-		joinview.addWindowListener(new WindowAdapter() { // form에서 x버튼을 눌렀을 때!
+		joinview.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				joinview.setVisible(false);
@@ -102,15 +102,24 @@ public class Controller implements ActionListener {
 		ticketview.bt_ThemeTicket.addActionListener(this);
 		ticketview.bt_pay.addActionListener(this);
 		ticketview.bt_cancle.addActionListener(this);
-		ticketview.addWindowListener(new WindowAdapter() { // form에서 x버튼을 눌렀을 때!
+		ticketview.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				ticketview.setVisible(false);
+				mainview.setVisible(true);
 			}
 		});
 
 		// PayView
 		payview.bt_submit.addActionListener(this);
+		payview.bt_cancle.addActionListener(this);
+		payview.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				payview.setVisible(false);
+			}
+		});
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -118,14 +127,14 @@ public class Controller implements ActionListener {
 
 		if (ob == mainview.bt_Login) { // MainView에서 로그인 버튼 클릭
 			loginform.setVisible(true);
+<<<<<<< HEAD
 		} else if (ob == loginform.bt_join) { // 회원가입 클릭시 보여주기
 			joinview.setVisible(true);
 		}
 
 		else if (ob == joinview.bt_submit) {
 		} else if (ob == mainview.bt_Order) {
-			mainview.setVisible(false);
-			ticketview.setVisible(true);
+=======
 		}
 
 		else if (ob == mainview.bt_Logout) { // MainView에서 로그아웃 버튼 클릭
@@ -134,11 +143,28 @@ public class Controller implements ActionListener {
 			mainview.bt_Login.setVisible(true);
 			mainview.showMsg("로그아웃 되었습니다!");
 		}
+		
+		else if (ob == mainview.bt_Order) {
+>>>>>>> upstream/master
+			mainview.setVisible(false);
+			ticketview.setVisible(true);
+		}
 
+<<<<<<< HEAD
+		else if (ob == mainview.bt_Logout) { // MainView에서 로그아웃 버튼 클릭
+			mainview.bt_Logout.setVisible(false);
+			mainview.bt_MyPage.setVisible(false);
+			mainview.bt_Login.setVisible(true);
+			mainview.showMsg("로그아웃 되었습니다!");
+		}
+
+=======
+>>>>>>> upstream/master
 		else if (ob == loginform.bt_join) { // LoginForm에서 회원가입 버튼 클릭
 			loginform.setVisible(false);
 			joinview.setVisible(true);
 		}
+<<<<<<< HEAD
 
 		else if (ob == loginform.bt_finId) { // LoginForm에서 아이디 찾기 버튼 클릭
 			findidview.setVisible(true);
@@ -148,6 +174,17 @@ public class Controller implements ActionListener {
 			findpassview.setVisible(true);
 		}
 
+=======
+
+		else if (ob == loginform.bt_finId) { // LoginForm에서 아이디 찾기 버튼 클릭
+			findidview.setVisible(true);
+		}
+
+		else if (ob == loginform.bt_finPass) { // LoginForm에서 비밀번호찾기 버튼 클릭
+			findpassview.setVisible(true);
+		}
+
+>>>>>>> upstream/master
 		else if (ob == loginform.bt_login) { // LoginForm에서 로그인 버튼 클릭
 			CusDAO cusdao = new CusDAO();
 
@@ -243,10 +280,15 @@ public class Controller implements ActionListener {
 				perinfo = "N";
 			}
 
+<<<<<<< HEAD
 			CusVO cusvo = new CusVO(0, 0, ID, Password, Jumin1, Jumin2, Name, Tel, addr, perinfo); // Primary key
 																									// 자리에
 																									// seq 해야함 !!
 
+=======
+			CusVO cusvo = new CusVO(0, 0, ID, Password, Jumin1, Jumin2, Name, Tel, addr, perinfo);
+			
+>>>>>>> upstream/master
 			if (cusdao.insert(cusvo)) { // insert 성공
 				joinview.showMsg("가입되었습니다!");
 				joinview.setVisible(false);
@@ -290,9 +332,15 @@ public class Controller implements ActionListener {
 			ticketname = "입장권";
 			payview.setVisible(true);
 		}
+<<<<<<< HEAD
 
 		else if (ob == payview.bt_submit) { // PayView에서 확인 버튼을 클릭했을 때
 
+=======
+
+		else if (ob == payview.bt_submit) { // PayView에서 확인 버튼을 클릭했을 때
+
+>>>>>>> upstream/master
 			if (!payview.cmb_adult.getSelectedItem().equals("0")) { // 어른 선택 시 테이블 추가
 				Object[] obj = { ticketname, // 티켓이름
 						payview.adult.getText(), // 구분
@@ -300,6 +348,9 @@ public class Controller implements ActionListener {
 						Integer.parseInt((String) payview.cmb_adult.getSelectedItem()) * 1000, // 가격
 						payview.cmb_year.getSelectedItem() + "-" + payview.cmb_month.getSelectedItem() + "-" // 일자
 								+ payview.cmb_date.getSelectedItem()
+<<<<<<< HEAD
+
+=======
 
 				};
 				ticketview.dtm.addRow(obj);
@@ -313,10 +364,36 @@ public class Controller implements ActionListener {
 						payview.cmb_year.getSelectedItem() + "-" + payview.cmb_month.getSelectedItem() + "-" // 일자
 								+ payview.cmb_date.getSelectedItem()
 
+>>>>>>> upstream/master
 				};
 				ticketview.dtm.addRow(obj);
 			}
 
+<<<<<<< HEAD
+			if (!payview.cmb_child.getSelectedItem().equals("0")) { // 어린이 선택 시 테이블 추가
+				Object[] obj = { ticketname, // 티켓이름
+						payview.child.getText(), // 구분
+						payview.cmb_child.getSelectedItem(), // 수량
+						Integer.parseInt((String) payview.cmb_child.getSelectedItem()) * 1000, // 가격
+=======
+			if (!payview.cmb_handy.getSelectedItem().equals("0")) { // 장애우 선택 시 테이블 추가
+				Object[] obj = { ticketname, // 티켓이름
+						payview.handy.getText(), // 구분
+						payview.cmb_handy.getSelectedItem(), // 수량
+						Integer.parseInt((String) payview.cmb_handy.getSelectedItem()) * 1000, // 가격
+>>>>>>> upstream/master
+						payview.cmb_year.getSelectedItem() + "-" + payview.cmb_month.getSelectedItem() + "-" // 일자
+								+ payview.cmb_date.getSelectedItem()
+
+				};
+				ticketview.dtm.addRow(obj);
+			}
+			ticketname = null;
+			payview.init();
+			payview.setVisible(false);
+		}
+
+<<<<<<< HEAD
 			if (!payview.cmb_handy.getSelectedItem().equals("0")) { // 장애우 선택 시 테이블 추가
 				Object[] obj = { ticketname, // 티켓이름
 						payview.handy.getText(), // 구분
@@ -330,6 +407,9 @@ public class Controller implements ActionListener {
 			}
 			ticketname = null;
 			payview.init();
+=======
+		else if (ob == payview.bt_cancle) {// PayView에서 취소 버튼을 클릭했을 때
+>>>>>>> upstream/master
 			payview.setVisible(false);
 		}
 

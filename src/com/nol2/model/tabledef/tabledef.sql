@@ -203,7 +203,10 @@ alter table prepass
 add constraint ride_rideno_fk foreign key (rideno)
 references ride(rideno);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/master
 alter table ticket add (tphoto varchar2 (30));
 alter table event add (ephoto varchar2 (30));
 alter table ride add (rphoto varchar2(30));

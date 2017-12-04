@@ -24,7 +24,7 @@ public class PayView extends JFrame{
 	
 		
 	public PayView() {
-		setTitle("결제진행!");
+		setTitle("관리자버튼");
 			
 		information = new JLabel("이미지");
 		reserve = new JLabel("티켓예매");
